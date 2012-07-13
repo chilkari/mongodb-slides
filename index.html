@@ -1,0 +1,354 @@
+<!doctype html>  
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <title>NoSQL and MongoDB</title>
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+    </head>
+    
+    <body>
+        
+        <div class="reveal">
+
+            <!-- Used to fade in a background when a specific slide state is reached -->
+            <div class="state-background"></div>
+            
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>NoSQL and MongoDB</h1>
+                    <h3 class="inverted">A Quick Overview</h3>
+                    <script>
+                        // Delicously hacky. Look away.
+                        if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+                    </script>
+                </section>
+
+                <section>
+                <h2>Who am I?</h2>
+                <ul>
+                    <li>Jonathon Wilson / <a href="http://twitter.com/chilkari">@chilkari</a></li>
+                    <li>Director of Software Engineering, Demand Media</li>
+                    <li>Currently working on <em>RSS Graffiti</em>
+                    <ul>
+                        <li>Facebook application</li>
+                        <li>~ 3 million posts per day</li>
+                        <li>Uses MongoDB for all persistence</li>
+                    </ul></li>
+                    <li>Member of Montana Programmers in Bozeman</li>
+                    <li>Special Focus
+                    <ul>
+                        <li>UI development, Javascript + AJAX</li>
+                        <li>Backend scalability and architecture</li>
+                    </ul></li>
+                    <li class="fragment"><em>Not biased towards SQL versus NoSQL</em><br/>
+                    <small>(also not biased towards hammers versus screwdrivers)</small></li>
+                </ul>
+                </section>
+                
+                <section>  <!-- NoSQL vertical -->
+
+                    <section>
+                        <h2>What is "NoSQL"</h2>
+                        <ol>
+                            <li class="fragment">A really bad name</li>
+                            <li class="fragment">(A better name: NoREL)</li>
+                            <li class="fragment">A different approach to <em>storage</em></li>
+                            <li class="fragment">... which results in all kinds of other differences</li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h2>SQL Data</h2>
+                        <img src="img/rdata.png" style="width:80%"/>
+                    </section>
+
+                    <section>
+                    <h2>NoSQL Data</h2>
+                    <code><pre>
+{ 
+  Order Number: 1,
+  Customer: {
+    Name: Jonathon Wilson,
+    Address: {
+        Street: 123 Anywhere,
+        City: Bozeman,
+        State: MT,
+        Zip: 59718
+    }
+  },
+  Products: [ 
+    {
+      SKU: ABC,
+      Name: Wrench,
+      Item Price: $29.99,
+      Quantity: 1
+    }, (etc...)
+  ],
+  Total: $79.99
+}
+                    </pre></code>
+                    </section>
+
+                    <section>
+                    <h2>Many Different Types</h2>
+                        <ul>
+                            <li>Document (MongoDB, CouchDB)</li>
+                            <li>Graph (FlockDB)</li>
+                            <li>Key Value Store (Tokyo Cabinet, Memcache)</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Key Differences with NoSQL</h2>
+                        <ul>
+                            <li>No Schema</li>
+                            <li>Usually no ACID guarantees or transactions</li>
+                            <li>No Joins (except in application code)</li>
+                            <li>Designed to span many machines</li>
+                            <li>&quot;Eventually Consistent&quot;</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Is Anybody Really Using It?</h2>
+                        <ul>
+                            <li>Google</li>
+                            <li>Twitter</li>
+                            <li>Facebook</li>
+                            <li>Amazon</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Should I Be Using It?</h2>
+                        <p class="fragment"><em>It depends on your problem.</em></p>
+                        <h3 class="fragment">Good Applications</h3>
+                        <ul class="fragment">
+                            <li>Sparse data</li>
+                            <li>Tons of update-heavy traffic</li>
+                            <li>Need to scale to huge amounts of data</li>
+                            <li>Expect lots of schema change/variation</li>
+                            <li>Web Apps with mostly CRUD</li>
+                            <li>Store for MapReduce/BigData Jobs</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Should I Be Using It?</h2>
+                        <p><em>It depends on your problem.</em></p>
+                        <h3>Not-so-good Applications</h3>
+                        <ul>
+                            <li>Adhoc querying/reporting</li>
+                            <li>Heavy need for multi-statement transactions</li>
+                            <li>Things that are obviously <em>relational</em></li>
+                        </ul>
+                    </section>
+
+                </section>
+
+
+                <!-- MongoDB Vertical -->
+                <section>
+                    <section>
+                    <h2>What is MongoDB</h2>
+                    <p><img src="img/logo-mongodb.png"/></p>
+                    <ul>
+                        <li>Free Document Database from 10Gen</li>
+                        <li><a href="http://www.mongodb.org">www.mongodb.org</a></li>
+                    </ul>
+                    </section>
+
+                    <section>
+                    <h2>Features</h2>
+                    <ul>
+                        <li>Runs on Windows, Mac, Linux</li>
+                        <li>Indexes on any field at any depth</li>
+                        <li>Automatic Replication</li>
+                        <li>Automatic Sharding</li>
+                        <li>Rich Document Queries</li>
+                        <li>Atomic in-place updates</li>
+                        <li>Full javascript shell (variables, functions)</li>
+                        <li>Map/Reduce in the Engine</li>
+                    </ul>
+                    </section>
+
+                    <section>
+                    <h2>Sort-Of Comparisons to RDBMS</h2>
+                    <ul>
+                        <li>RDBMS <-> MongoDB</li>
+                        <li>Table <-> Collection</li>
+                        <li>Row <-> Document</li>
+                        <li>Column <-> Key</li>
+                        <li>Composite Foreign Key <-> Substructure</li>
+                        <li>Relationship Foreign Key <-> (see 'join')</li>
+                        <li>Index <-> Index</li>
+                        <li>Join <-> Uhhh. Fill memory, join in app code</li>
+                    </ul>
+                    </section>
+
+                </section>
+
+                <!-- MongoDB Commands -->
+                <section>
+                    <section>
+                        <h2>Quick Examples of the Basics</h2>
+                        <ul>
+                            <li>CRUD</li>
+                            <li>Advanced Queries</li>
+                            <li>Interesting Updates</li>
+                            <li>Cursor Methods</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>CRUD</h2>
+                        <code><pre>
+$ use foo;
+switched to db foo
+$ db.people.insert({"name":"Jon"});
+$ db.people.findOne({"name":"Jon"});
+{ "_id" : ObjectId("4ffe551b152e394382744c9d"), 
+  "name" : "Jon" }
+$ db.people.update({"name":"Jon"}, 
+  {$set:{"city":"Bozeman"}});
+$ db.people.findOne({"name":"Jon"});
+{
+	"_id" : ObjectId("4ffe551b152e394382744c9d"),
+	"city" : "Bozeman",
+	"name" : "Jon"
+}
+$ db.people.remove({"name":"Jon"});
+$ db.people.count();
+0
+                        </pre></code>
+                    </section>
+
+                    <section>
+                    <h2>Advanced Queries</h2>
+                    <code><pre>
+dot into structure: {"foo.bar.people.name": "Jon"}
+$in, $nin, $all
+$ne, $gt, $lt, $gte, $lte
+$exists
+$or, $nor, $and, $not
+$regex
+Javascript functions: $where:"this.a > 3"
+                    </pre></code>
+                    </section>
+
+                    <section>
+                    <h2>Interesting Updates</h2>
+                    <code><pre>
+$inc
+$set, $unset
+$push(obj), $pushAll([]),
+$pop(), $pull(q)
+$addToSet, $each
+                    </pre></code>
+                    </section>
+
+                    <section>
+                    <h2>Cursor Methods</h2>
+                    <code><pre>
+count()
+limit()
+skip()
+sort()
+
+                    </pre></code>
+                    </section>
+
+                </section>
+
+                <section>
+                <h2>Conclusion</h2>
+                <p>At best, MongoDB is a powerful, fast, document database that, in the right setting, is easier to setup, test and use than RDBMS systems.</p>
+                <p>At worst, it's an alternative worth adding to your toolbox for a fresh perspective.</p>
+                </section>
+
+            </div>
+
+            <!-- The navigational controls UI -->
+            <aside class="controls">
+                <a class="left" href="#">&#x25C4;</a>
+                <a class="right" href="#">&#x25BA;</a>
+                <a class="up" href="#">&#x25B2;</a>
+                <a class="down" href="#">&#x25BC;</a>
+            </aside>
+
+            <!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+            <div class="progress"><span></span></div>
+            
+        </div>
+
+        <!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+        <script src="lib/js/head.min.js"></script>
+
+        <script>
+            // Load the main reveal.js script
+            head.js( 'js/reveal.js', function() {
+                // Parse the query string into a key/value object
+                var query = {};
+
+                location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+                    query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+                } );
+
+                // Fires when a slide with data-state=customevent is activated
+                Reveal.addEventListener( 'customevent', function() {
+                    alert( '"customevent" has fired' );
+                } );
+
+                // Fires each time a new slide is activated
+                Reveal.addEventListener( 'slidechanged', function( event ) {
+                    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+                } );
+
+                Reveal.initialize({
+                    // Display controls in the bottom right corner
+                    controls: true,
+
+                    // Display a presentation progress bar
+                    progress: true,
+
+                    // If true; each slide will be pushed to the browser history
+                    history: true,
+
+                    // Loops the presentation, defaults to false
+                    loop: false,
+
+                    // Flags if mouse wheel navigation should be enabled
+                    mouseWheel: true,
+
+                    // Apply a 3D roll to links on hover
+                    rollingLinks: true,
+
+                    // UI style
+                    theme: query.theme || 'default', // default/neon
+
+                    // Transition style
+                    transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+                });
+            } );
+            
+            // Load third party scripts
+            head.js( 'lib/js/classList.js' );
+            head.js( 'lib/js/highlight.js', function() {
+                // Fire off syntax highlighting for potential code samples in the slides
+                hljs.initHighlightingOnLoad();
+            } );
+
+            // If we're runnning the notes server we need to include some additional JS
+            // TODO Is there a better way to determine if we're running the notes server?
+            if( window.location.host === 'localhost:1947' ) {
+                head.js( 'socket.io/socket.io.js', 'plugin/speakernotes/client.js' );
+            }
+        </script>
+        
+    </body>
+</html>
