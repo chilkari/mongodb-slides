@@ -1,0 +1,42 @@
+# Ignore various operating system gorp
+.DS_Store
+Thumbs.db
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore PySmell files
+PYSMELLTAGS*
+TAGS
+
+# Ignore Emacs backup/temp files
+*~
+\#*#
+.#*
+
+# Ignore VIM swp files (temp files while open in editor)
+*.swp
+
+# Ignore setuptools' *.egg-info directories created when you run
+# 'python setup.py develop'
+*.egg-info
+
+# Ignore PyCharm/IDEA project directories and plugin files
+.idea
+atlassian-ide-plugin.xml
+
+# Ignore build/test artifacts from nose/coverage/pylint
+dist/
+build/
+.coverage
+coverage.xml
+nosetests.xml
+pylint.txt
+
+# Ignore project files
+[Bb]uild/
+.settings/
+.project
+.pydevproject
+.conflict
+
